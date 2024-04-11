@@ -1,3 +1,4 @@
+package 반복_정렬_검색;
 public class Code06 {
     public static void main(String[] args) {
         int[] grades = new int[5];

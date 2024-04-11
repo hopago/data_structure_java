@@ -1,3 +1,4 @@
+package 반복_정렬_검색;
 import java.util.Scanner;
 
 class Code02 {

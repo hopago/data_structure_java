@@ -70,7 +70,11 @@ public class Code02 {
             while (targetFile.hasNext()) {
                 String inputWord = targetFile.next();
 
-                addWord(inputWord);
+                String trimmedInputWord = trimming(inputWord);
+
+                if (trimmedInputWord != null) {
+                    addWord(trimmedInputWord.toLowerCase());
+                }
             }
 
             targetFile.close();
@@ -80,14 +84,40 @@ public class Code02 {
         }
     }
 
+    public static String trimming(String inputWord) {
+        if (inputWord == null || inputWord.length() <= 0)
+            return null;
+
+        int i = 0, j = inputWord.length() - 1;
+
+        while (i < inputWord.length() && !Character.isLetter(inputWord.charAt(i))) {
+            i++;
+        }
+        while (j >= 0 && !Character.isLetter(inputWord.charAt(j))) {
+            j--;
+        }
+
+        if (i <= j)
+            return inputWord.substring(i, j + 1);
+        else
+            return null;
+    }
+
     public static void addWord(String inputWord) {
         int findIndex = findIndex(inputWord);
 
         if (findIndex != -1) {
             count[findIndex]++;
         } else {
-            words[n] = inputWord;
-            count[n] = 1;
+            int i = n - 1;
+            while (i >= 0 && words[i].compareTo(inputWord) > 0) {
+                words[i + 1] = words[i];
+                count[i + 1] = count[i];
+                i--;
+            }
+
+            words[i + 1] = inputWord;
+            count[i + 1] = 1;
             n++;
         }
     }

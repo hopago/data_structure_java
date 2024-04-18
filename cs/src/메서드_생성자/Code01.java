@@ -16,8 +16,7 @@ public class Code01 {
             if (command.equals("create")) {
                 char name = kb.next().charAt(0);
 
-                polynomials[n].name = name;
-                polynomials[n].n = 0;
+                polynomials[n] = new Polynomial(name);
                 n++;
             } else if (command.equals("add")) {
                 char name = kb.next().charAt(0);
@@ -28,7 +27,7 @@ public class Code01 {
                 } else {
                     int c = kb.nextInt();
                     int e = kb.nextInt();
-                    
+
                     polynomials[findIdx].addTerm(c, e);
                 }
             } else if (command.equals("calc")) {

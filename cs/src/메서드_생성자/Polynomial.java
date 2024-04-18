@@ -3,7 +3,13 @@ package 메서드_생성자;
 public class Polynomial {
     char name;
     int n;
-    MyTerm[] terms = new MyTerm[100];
+    MyTerm[] terms;
+
+    Polynomial(char name) {
+        this.name = name;
+        n = 0;
+        terms = new MyTerm[100];
+    }
 
     int calcPolynomial(int x) {
         int result = 0;
@@ -37,9 +43,7 @@ public class Polynomial {
                 i--;
             }
 
-            terms[i + 1] = new MyTerm();
-            terms[i + 1].coef = c;
-            terms[i + 1].exp = e;
+            terms[i + 1] = new MyTerm(c, e);
             n++;
         }
     }
